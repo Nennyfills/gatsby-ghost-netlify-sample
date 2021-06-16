@@ -30,7 +30,6 @@ const generateItem = function generateItem(siteUrl, post) {
                 },
             },
         })
-
         // Also add the image to the content, because not all readers support media:content
         htmlContent(`p`).first().before(`<img src="` + imageUrl + `" />`)
         htmlContent(`img`).attr(`alt`, post.title)
@@ -48,8 +47,15 @@ const generateRSSFeed = function generateRSSFeed(siteConfig) {
     return {
         serialize: ({ query: { allGhostPost } }) => allGhostPost.edges.map(edge => Object.assign({}, generateItem(siteConfig.siteUrl, edge.node))),
         setup: ({ query: { allGhostSettings } }) => {
-            const siteTitle = allGhostSettings.edges[0].node.title || `No Title`
-            const siteDescription = allGhostSettings.edges[0].node.description || `No Description`
+            const siteTitle = allGhostSettings &&
+            allGhostSettings.edges[0] &&
+            allGhostSettings.edges[0].node 
+                ? allGhostSettings.edges[0].node.title
+                : `No Title`
+            const siteDescription = allGhostSettings &&
+            allGhostSettings.edges[0] &&
+            allGhostSettings.edges[0].node 
+                ? allGhostSettings.edges[0].node.description : `No Description`
             const feed = {
                 title: siteTitle,
                 description: siteDescription,
