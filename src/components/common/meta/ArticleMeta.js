@@ -43,7 +43,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
         } : undefined,
         publisher: {
             "@type": `Organization`,
-            name: settings.title,
+            name: settings?.title,
             logo: {
                 "@type": `ImageObject`,
                 url: publisherLogo,

@@ -32,7 +32,7 @@ const WebsiteMeta = ({ data, settings, canonical, title, description, image, typ
             } : undefined,
         publisher: {
             "@type": `Organization`,
-            name: settings.title,
+            name: settings?.title,
             logo: {
                 "@type": `ImageObject`,
                 url: publisherLogo,
