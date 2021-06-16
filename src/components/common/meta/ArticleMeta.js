@@ -13,7 +13,7 @@ import { tags as tagsHelper } from '@tryghost/helpers'
 
 const ArticleMetaGhost = ({ data, settings, canonical }) => {
     const ghostPost = data
-    settings = settings.allGhostSettings.edges[0].node
+    settings = settings.allGhostSettings.edges[0]?.node
 
     const author = getAuthorProperties(ghostPost.primary_author)
     const publicTags = _.map(tagsHelper(ghostPost, { visibility: `public`, fn: tag => tag }), `name`)

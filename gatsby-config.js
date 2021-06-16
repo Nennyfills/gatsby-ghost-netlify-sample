@@ -1,5 +1,7 @@
 const path = require(`path`)
-
+require(`dotenv`).config({
+    path: `.env.${process.env.NODE_ENV}`,
+})
 const config = require(`./src/utils/siteConfig`)
 const generateRSSFeed = require(`./src/utils/rss/generate-feed`)
 
@@ -22,7 +24,7 @@ try {
     }
 }
 
-if (process.env.NODE_ENV === `production` && config.siteUrl === `http://localhost:8000` && !process.env.SITEURL) {
+if (process.env.NODE_ENV === `production` && config.siteUrl === `http://localhost:8000` && !process.env.SITE_URL) {
     throw new Error(`siteUrl can't be localhost and needs to be configured in siteConfig. Check the README.`) // eslint-disable-line
 }
 
@@ -35,7 +37,7 @@ if (process.env.NODE_ENV === `production` && config.siteUrl === `http://localhos
 */
 module.exports = {
     siteMetadata: {
-        siteUrl: process.env.SITEURL || config.siteUrl,
+        siteUrl: process.env.SITE_URL || config.siteUrl,
     },
     plugins: [
         /**
