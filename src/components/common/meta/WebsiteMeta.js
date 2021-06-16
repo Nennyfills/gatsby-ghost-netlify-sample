@@ -11,13 +11,13 @@ import config from '../../../utils/siteConfig'
 const WebsiteMeta = ({ data, settings, canonical, title, description, image, type }) => {
     settings = settings.allGhostSettings.edges[0]?.node
 
-    const publisherLogo = url.resolve(config.siteUrl, (settings.logo || config.siteIcon))
+    const publisherLogo = url.resolve(config.siteUrl, (settings?.logo || config?.siteIcon))
     let shareImage = image || data.feature_image || _.get(settings, `cover_image`, null)
 
     shareImage = shareImage ? url.resolve(config.siteUrl, shareImage) : null
 
-    description = description || data.meta_description || data.description || config.siteDescriptionMeta || settings.description
-    title = `${title || data.meta_title || data.name || data.title} - ${settings.title}`
+    description = description || data?.meta_description || data?.description || config?.siteDescriptionMeta || settings?.description
+    title = `${title || data?.meta_title || data?.name || data?.title} - ${settings?.title}`
 
     const jsonLd = {
         "@context": `https://schema.org/`,

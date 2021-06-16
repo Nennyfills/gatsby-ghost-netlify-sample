@@ -18,23 +18,23 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
     const author = getAuthorProperties(ghostPost.primary_author)
     const publicTags = _.map(tagsHelper(ghostPost, { visibility: `public`, fn: tag => tag }), `name`)
     const primaryTag = publicTags[0] || ``
-    const shareImage = ghostPost.feature_image ? ghostPost.feature_image : _.get(settings, `cover_image`, null)
-    const publisherLogo = (settings.logo || config.siteIcon) ? url.resolve(config.siteUrl, (settings.logo || config.siteIcon)) : null
+    const shareImage = ghostPost?.feature_image ? ghostPost?.feature_image : _.get(settings, `cover_image`, null)
+    const publisherLogo = (settings?.logo || config.siteIcon) ? url.resolve(config.siteUrl, (settings?.logo || config.siteIcon)) : null
 
     const jsonLd = {
         "@context": `https://schema.org/`,
         "@type": `Article`,
         author: {
             "@type": `Person`,
-            name: author.name,
+            name: author?.name,
             image: author.image ? author.image : undefined,
             sameAs: author.sameAsArray ? author.sameAsArray : undefined,
         },
         keywords: publicTags.length ? publicTags.join(`, `) : undefined,
-        headline: ghostPost.meta_title || ghostPost.title,
+        headline: ghostPost?.meta_title ?? ghostPost?.title,
         url: canonical,
-        datePublished: ghostPost.published_at,
-        dateModified: ghostPost.updated_at,
+        datePublished: ghostPost?.published_at,
+        dateModified: ghostPost?.updated_at,
         image: shareImage ? {
             "@type": `ImageObject`,
             url: shareImage,
