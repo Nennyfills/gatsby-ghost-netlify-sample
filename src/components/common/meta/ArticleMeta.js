@@ -65,7 +65,7 @@ const ArticleMetaGhost = ({ data, settings, canonical }) => {
                 <meta name="description" content={ghostPost.meta_description || ghostPost.excerpt} />
                 <link rel="canonical" href={canonical} />
 
-                <meta property="og:site_name" content={settings.title} />
+                <meta property="og:site_name" content={settings?.title} />
                 <meta property="og:type" content="article" />
                 <meta property="og:title"
                     content={

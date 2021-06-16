@@ -41,7 +41,7 @@ const AuthorMeta = ({ data, settings, canonical }) => {
                 <title>{title}</title>
                 <meta name="description" content={description} />
                 <link rel="canonical" href={canonical} />
-                <meta property="og:site_name" content={settings.title} />
+                <meta property="og:site_name" content={settings?.title} />
                 <meta property="og:type" content="profile" />
                 <meta property="og:title" content={title} />
                 <meta property="og:description" content={description} />
